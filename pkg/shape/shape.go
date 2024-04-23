@@ -19,6 +19,16 @@ func (s Shape) String() string {
 	return t
 }
 
+func (m Moves) String() string {
+	t := "[\n"
+
+	for _, shape := range m {
+		t += fmt.Sprintf("%s\n", shape.String())
+	}
+
+	return t + "]"
+}
+
 func (s Shape) zero() (x int, y int) {
 	for y = 0; y < len(s); y += 1 {
 		for x = 0; x < len(s[0]); x += 1 {
@@ -173,6 +183,6 @@ func LineCompare(e1, e2 Line) int {
 	return slices.Compare(e1, e2)
 }
 
-func (e1 Shape) Equal(e2 Shape) int {
-	return slices.CompareFunc(e1, e2, LineCompare)
+func (e1 Shape) Equal(e2 Shape) bool {
+	return slices.CompareFunc(e1, e2, LineCompare) == 0
 }

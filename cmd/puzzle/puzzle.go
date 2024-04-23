@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/alendavid/puzzling/pkg/shape"
+	"github.com/alendavid/puzzling/pkg/solver"
 )
 
 func handleErr(err error) {
@@ -56,5 +57,5 @@ func main() {
 		}
 	}
 
-	fmt.Println(puzzle)
+	fmt.Println(solver.Solve(puzzle))
 }
