@@ -1,37 +1,55 @@
 package solver
 
-type shape interface {
-	~[][]int
-}
+import "slices"
 
-func Done(a, b int) [][]int {
+type line = []int
+type shape = []line
+type steps = []shape
+
+func Final(columns, rows int) shape {
 	c := 1
-	s := make([][]int, a)
+	s := make(shape, columns)
 
-	for i := 0; i < a; i += 1 {
-		s[i] = make([]int, b)
+	for i := 0; i < columns; i += 1 {
+		s[i] = make(line, rows)
 
-		for j := 0; j < b; j += 1 {
+		for j := 0; j < rows; j += 1 {
 			s[i][j] = c
 			c += 1
 		}
 	}
 
-	s[a-1][b-1] = 0
+	s[columns-1][rows-1] = 0
 
 	return s
 }
 
-func Step[S shape](a, b S) S {
-	return a
+func Moves(a shape) []shape {
+	return make([][][]int, 0)
 }
 
-func Solve[S shape](input S) []S {
-	a, b := len(input), len(input[0])
+func Steps(a, b shape) []shape {
+	steps := make([]shape, 0)
 
-	solution := make([]S, 0)
+	return steps
+}
 
-	solution = append(solution, Done(a, b))
+func lineCompare(e1, e2 line) int {
+	return slices.Compare(e1, e2)
+}
+
+func Solve(input shape) steps {
+	columns, rows := len(input), len(input[0])
+
+	solution := make(steps, 0)
+	final := Final(columns, rows)
+
+	if slices.CompareFunc(input, final, lineCompare) == 0 {
+		return solution
+	}
+
+	solution = append(solution, Steps(input, final)...)
 
 	return solution
+
 }
