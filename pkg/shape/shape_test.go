@@ -15,6 +15,7 @@ type scenario struct {
 func TestZero(t *testing.T) {
 	cases := []scenario{
 		{"1,1", Shape{{1, 2}, {3, 0}}, [2]int{1, 1}},
+		{"1,0", Shape{{1, 2}, {0, 3}}, [2]int{1, 0}},
 	}
 
 	t.Run("can find zero", func(t *testing.T) {
