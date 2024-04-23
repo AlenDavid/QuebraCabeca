@@ -70,6 +70,22 @@ func (a Shape) Up() (bool, Shape) {
 	return true, b
 }
 
+func (a Shape) Down() (bool, Shape) {
+	b := a.Copy()
+
+	x, y := b.zero()
+
+	if y == len(a) {
+		return false, b
+	}
+
+	v := b[y+1][x]
+	b[y+1][x] = 0
+	b[y][x] = v
+
+	return true, b
+}
+
 func (a Shape) Next() Moves {
 	next := make(Moves, 0)
 
