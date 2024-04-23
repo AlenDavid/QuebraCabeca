@@ -1,5 +1,7 @@
 package shape
 
+import "slices"
+
 type Line []int
 type Shape []Line
 type Moves []Shape
@@ -32,4 +34,20 @@ func Final(columns, rows int) Shape {
 	s[columns-1][rows-1] = 0
 
 	return s
+}
+
+func (a Shape) Next() Moves {
+	return make(Moves, 0)
+}
+
+func (a Shape) Steps(b Shape) Moves {
+	return make(Moves, 0)
+}
+
+func LineCompare(e1, e2 Line) int {
+	return slices.Compare(e1, e2)
+}
+
+func (e1 Shape) Equal(e2 Shape) int {
+	return slices.CompareFunc(e1, e2, LineCompare)
 }
