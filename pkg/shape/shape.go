@@ -55,6 +55,10 @@ func (a Shape) Copy() Shape {
 }
 
 func (a Shape) Up() (bool, Shape) {
+	if len(a) < 2 {
+		return false, a
+	}
+
 	b := a.Copy()
 
 	x, y := b.zero()
@@ -71,6 +75,10 @@ func (a Shape) Up() (bool, Shape) {
 }
 
 func (a Shape) Down() (bool, Shape) {
+	if len(a) < 2 {
+		return false, a
+	}
+
 	b := a.Copy()
 
 	x, y := b.zero()
@@ -87,6 +95,10 @@ func (a Shape) Down() (bool, Shape) {
 }
 
 func (a Shape) Left() (bool, Shape) {
+	if len(a[0]) < 2 {
+		return false, a
+	}
+
 	b := a.Copy()
 
 	x, y := b.zero()
@@ -103,6 +115,10 @@ func (a Shape) Left() (bool, Shape) {
 }
 
 func (a Shape) Right() (bool, Shape) {
+	if len(a[0]) < 2 {
+		return false, a
+	}
+
 	b := a.Copy()
 
 	x, y := b.zero()

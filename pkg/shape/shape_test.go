@@ -60,6 +60,20 @@ func TestFinal(t *testing.T) {
 }
 
 func TestMoves(t *testing.T) {
+	t.Run("cannot move", func(t *testing.T) {
+		input := Shape{{0}}
+
+		up, _ := input.Up()
+		right, _ := input.Right()
+		down, _ := input.Down()
+		left, _ := input.Left()
+
+		assert.False(t, up)
+		assert.False(t, right)
+		assert.False(t, down)
+		assert.False(t, left)
+	})
+
 	t.Run("moving up", func(t *testing.T) {
 		input := Shape{
 			{1, 2},
