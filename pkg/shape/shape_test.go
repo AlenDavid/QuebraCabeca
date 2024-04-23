@@ -33,13 +33,14 @@ func TestFinal(t *testing.T) {
 	t.Run("returns the correct shape for any given XY puzzle", func(t *testing.T) {
 		t.Run("2x2 puzzle", func(t *testing.T) {
 			expected := Shape{{1, 2}, {3, 0}}
+
 			assert.Equal(t, expected, Final(2, 2))
 		})
 
 		t.Run("3x3 puzzle", func(t *testing.T) {
 			expected := Shape{{1, 2, 3}, {4, 5, 6}, {7, 8, 0}}
-			assert.Equal(t, expected, Final(3, 3))
 
+			assert.Equal(t, expected, Final(3, 3))
 		})
 	})
 }
