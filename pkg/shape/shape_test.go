@@ -113,4 +113,22 @@ func TestMoves(t *testing.T) {
 		assert.Equal(t, expected, up)
 		assert.NotEqual(t, input, up)
 	})
+
+	t.Run("moving right", func(t *testing.T) {
+		input := Shape{
+			{0, 1},
+			{3, 2},
+		}
+
+		expected := Shape{
+			{1, 0},
+			{3, 2},
+		}
+
+		worked, up := input.Right()
+
+		assert.True(t, worked)
+		assert.Equal(t, expected, up)
+		assert.NotEqual(t, input, up)
+	})
 }
