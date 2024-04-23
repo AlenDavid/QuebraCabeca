@@ -1,10 +1,23 @@
 package shape
 
-import "slices"
+import (
+	"fmt"
+	"slices"
+)
 
 type Line []int
 type Shape []Line
 type Moves []Shape
+
+func (s Shape) String() string {
+	t := ""
+
+	for _, line := range s {
+		t += fmt.Sprintf("%v\n", line)
+	}
+
+	return t
+}
 
 func (s Shape) zero() (x int, y int) {
 	for y = 0; y < len(s); y += 1 {
