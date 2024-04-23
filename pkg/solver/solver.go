@@ -14,6 +14,11 @@ func Solve(input shape.Shape) shape.Moves {
 		return solution
 	}
 
-	return solution
+	for _, move := range input.Next() {
+		if move.Equal(final) == 0 {
+			return append(solution, move)
+		}
+	}
 
+	return solution
 }
