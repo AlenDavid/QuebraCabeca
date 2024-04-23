@@ -146,3 +146,30 @@ func TestMoves(t *testing.T) {
 		assert.NotEqual(t, input, up)
 	})
 }
+
+func TestNext(t *testing.T) {
+	t.Run("list all next possibilities", func(t *testing.T) {
+		input := Shape{
+			{1, 2, 3},
+			{4, 0, 5},
+			{6, 7, 8},
+		}
+
+		expected := Moves{{
+			{1, 0, 3},
+			{4, 2, 5},
+			{6, 7, 8}}, {
+			{1, 2, 3},
+			{4, 5, 0},
+			{6, 7, 8}}, {
+			{1, 2, 3},
+			{4, 7, 5},
+			{6, 0, 8}}, {
+			{1, 2, 3},
+			{0, 4, 5},
+			{6, 7, 8}},
+		}
+
+		assert.Equal(t, expected, input.Next())
+	})
+}

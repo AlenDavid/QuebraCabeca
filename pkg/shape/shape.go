@@ -137,8 +137,21 @@ func (a Shape) Right() (bool, Shape) {
 func (a Shape) Next() Moves {
 	next := make(Moves, 0)
 
-	// i, j := a.zero()
-	// rows, columns := a.Rows(), a.Columns()
+	if moving, shape := a.Up(); moving {
+		next = append(next, shape)
+	}
+
+	if moving, shape := a.Right(); moving {
+		next = append(next, shape)
+	}
+
+	if moving, shape := a.Down(); moving {
+		next = append(next, shape)
+	}
+
+	if moving, shape := a.Left(); moving {
+		next = append(next, shape)
+	}
 
 	return next
 }
