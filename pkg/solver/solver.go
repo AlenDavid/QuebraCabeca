@@ -14,8 +14,6 @@ func Solve(input shape.Shape) shape.Moves {
 		return solution
 	}
 
-	solution = append(solution, input.Steps(final)...)
-
 	return solution
 
 }

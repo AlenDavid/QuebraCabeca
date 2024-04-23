@@ -16,7 +16,7 @@ func TestZero(t *testing.T) {
 	t.Run("can find zero", func(t *testing.T) {
 		cases := []scenario{
 			{"1,1", Shape{{1, 2}, {3, 0}}, [2]int{1, 1}},
-			{"1,0", Shape{{1, 2}, {0, 3}}, [2]int{1, 0}},
+			{"0,1", Shape{{1, 2}, {0, 3}}, [2]int{0, 1}},
 		}
 
 		for _, c := range cases {
@@ -56,5 +56,25 @@ func TestFinal(t *testing.T) {
 
 			assert.Equal(t, expected, Final(3, 3))
 		})
+	})
+}
+
+func TestMoves(t *testing.T) {
+	t.Run("moving up", func(t *testing.T) {
+		input := Shape{
+			{1, 2},
+			{3, 0},
+		}
+
+		expected := Shape{
+			{1, 0},
+			{3, 2},
+		}
+
+		worked, up := input.Up()
+
+		assert.True(t, worked)
+		assert.Equal(t, expected, up)
+		assert.NotEqual(t, input, up)
 	})
 }
