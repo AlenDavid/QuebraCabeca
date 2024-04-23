@@ -83,7 +83,7 @@ func (a Shape) Down() (bool, Shape) {
 
 	x, y := b.zero()
 
-	if y == len(a) {
+	if y == len(a)-1 {
 		return false, b
 	}
 
@@ -123,7 +123,7 @@ func (a Shape) Right() (bool, Shape) {
 
 	x, y := b.zero()
 
-	if x == len(a[0]) {
+	if x == len(a[0])-1 {
 		return false, b
 	}
 
