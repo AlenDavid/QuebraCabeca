@@ -8,7 +8,6 @@ import (
 
 type Line []int
 type Shape []Line
-type Moves []Shape
 
 func (s Shape) Pos(value int) (i, j int) {
 	for i = 0; i < len(s); i += 1 {
@@ -38,16 +37,6 @@ func (s Shape) String() string {
 	return t + " ]"
 }
 
-func (m Moves) String() string {
-	t := ""
-
-	for _, shape := range m {
-		t += fmt.Sprintf("%s\n", shape.String())
-	}
-
-	return t
-}
-
 func (s Shape) zero() (x int, y int) {
 	for y = 0; y < len(s); y += 1 {
 		for x = 0; x < len(s[0]); x += 1 {
@@ -66,14 +55,6 @@ func Final() Shape {
 		{8, 0, 4},
 		{7, 6, 5},
 	}
-}
-
-func (a Shape) Columns() int {
-	return len(a)
-}
-
-func (a Shape) Rows() int {
-	return len(a[0])
 }
 
 func (a Shape) Copy() Shape {
@@ -166,8 +147,8 @@ func (a Shape) Right() (bool, Shape) {
 	return true, b
 }
 
-func (a Shape) Children() Moves {
-	next := make(Moves, 0)
+func (a Shape) Children() []Shape {
+	next := make([]Shape, 0)
 
 	if moving, shape := a.Up(); moving {
 		next = append(next, shape)
@@ -207,18 +188,4 @@ func (e1 Shape) Distance(e2 Shape) (distance int) {
 
 func (e1 Shape) Equal(e2 Shape) bool {
 	return slices.CompareFunc(e1, e2, LineCompare) == 0
-}
-
-func (m Moves) Contains(a Shape) bool {
-	return slices.ContainsFunc(m, func(b Shape) bool {
-		return a.Equal(b)
-	})
-}
-
-func (m Moves) Sort() {
-	final := Final()
-
-	slices.SortFunc(m, func(a, b Shape) int {
-		return a.Distance(final) - b.Distance(final)
-	})
 }

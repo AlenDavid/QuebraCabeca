@@ -57,7 +57,7 @@ func TestFinal(t *testing.T) {
 	})
 }
 
-func TestMoves(t *testing.T) {
+func TestMovingShape(t *testing.T) {
 	t.Run("cannot move", func(t *testing.T) {
 		input := Shape{{0}}
 
@@ -143,35 +143,6 @@ func TestMoves(t *testing.T) {
 		assert.Equal(t, expected, up)
 		assert.NotEqual(t, input, up)
 	})
-
-	t.Run("sorting", func(t *testing.T) {
-		input := Moves{
-			{{2, 1, 3},
-				{8, 6, 4},
-				{7, 0, 5}},
-			{{2, 1, 3},
-				{8, 0, 4},
-				{7, 6, 5}},
-			{{1, 2, 3},
-				{8, 0, 4},
-				{7, 6, 5}},
-		}
-
-		expected := Moves{
-			{{1, 2, 3},
-				{8, 0, 4},
-				{7, 6, 5}},
-			{{2, 1, 3},
-				{8, 0, 4},
-				{7, 6, 5}},
-			{{2, 1, 3},
-				{8, 6, 4},
-				{7, 0, 5}},
-		}
-
-		input.Sort()
-		assert.Equal(t, input, expected)
-	})
 }
 
 func TestNext(t *testing.T) {
@@ -182,7 +153,7 @@ func TestNext(t *testing.T) {
 			{6, 7, 8},
 		}
 
-		expected := Moves{{
+		expected := []Shape{{
 			{1, 0, 3},
 			{4, 2, 5},
 			{6, 7, 8}}, {
