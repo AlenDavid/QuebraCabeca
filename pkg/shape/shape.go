@@ -10,23 +10,29 @@ type Shape []Line
 type Moves []Shape
 
 func (s Shape) String() string {
-	t := ""
+	t := "[ "
 
-	for _, line := range s {
-		t += fmt.Sprintf("%v\n", line)
+	for i, line := range s {
+		for j, n := range line {
+			t += fmt.Sprintf("%d", n)
+
+			if j*i < len(line) {
+				t += ", "
+			}
+		}
 	}
 
-	return t
+	return t + " ]"
 }
 
 func (m Moves) String() string {
-	t := "[\n"
+	t := ""
 
 	for _, shape := range m {
 		t += fmt.Sprintf("%s\n", shape.String())
 	}
 
-	return t + "]"
+	return t
 }
 
 func (s Shape) zero() (x int, y int) {
