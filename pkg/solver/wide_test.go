@@ -15,7 +15,7 @@ func TestWideSearch(t *testing.T) {
 		{7, 5, 6},
 	}
 
-	res := solver.Solve(input)
+	res := solver.WideSearch(input)
 
 	assert.Equal(t, shape.Final(), res[len(res)-1])
 }

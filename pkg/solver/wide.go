@@ -4,7 +4,7 @@ import (
 	"github.com/alendavid/puzzling/pkg/shape"
 )
 
-func wideSearch(input shape.Shape) shape.Moves {
+func WideSearch(input shape.Shape) shape.Moves {
 	final := shape.Final()
 
 	open := make(shape.Moves, 0)
