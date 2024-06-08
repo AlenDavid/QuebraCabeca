@@ -13,10 +13,8 @@ func Solve(input shape.Shape) shape.Moves {
 
 	places[input.String()] = struct{}{}
 
-	columns, rows := len(input), len(input[0])
-
 	solution := make(shape.Moves, 0)
-	final := shape.Final(columns, rows)
+	final := shape.Final()
 
 	for _, move := range input.Next() {
 		if _, ok := places[move.String()]; ok {

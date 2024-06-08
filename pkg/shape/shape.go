@@ -41,22 +41,12 @@ func (s Shape) zero() (x int, y int) {
 	return -1, -1
 }
 
-func Final(columns, rows int) Shape {
-	c := 1
-	s := make(Shape, columns)
-
-	for i := 0; i < columns; i += 1 {
-		s[i] = make(Line, rows)
-
-		for j := 0; j < rows; j += 1 {
-			s[i][j] = c
-			c += 1
-		}
+func Final() Shape {
+	return Shape{
+		{1, 2, 3},
+		{8, 0, 4},
+		{7, 6, 5},
 	}
-
-	s[columns-1][rows-1] = 0
-
-	return s
 }
 
 func (a Shape) Columns() int {
