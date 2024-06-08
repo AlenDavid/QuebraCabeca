@@ -5,5 +5,5 @@ import (
 )
 
 func Solve(input shape.Shape) shape.Moves {
-	return WideSearch(input)
+	return BestSearch(input)
 }
