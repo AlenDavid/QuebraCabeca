@@ -2,12 +2,25 @@ package shape
 
 import (
 	"fmt"
+	"math"
 	"slices"
 )
 
 type Line []int
 type Shape []Line
 type Moves []Shape
+
+func (s Shape) Pos(value int) (i, j int) {
+	for i = 0; i < len(s); i += 1 {
+		for j = 0; j < len(s[i]); j += 1 {
+			if s[i][j] == value {
+				return
+			}
+		}
+	}
+
+	return -1, -1
+}
 
 func (s Shape) String() string {
 	t := "[ "
@@ -179,6 +192,19 @@ func LineCompare(e1, e2 Line) int {
 	return slices.Compare(e1, e2)
 }
 
+func (e1 Shape) Distance(e2 Shape) (distance int) {
+	for i, line := range e2 {
+		for j := range line {
+			value := e2[i][j]
+			x, y := e1.Pos(value)
+
+			distance += int(math.Pow(float64(x-i), 2) + math.Pow(float64(j-y), 2))
+		}
+	}
+
+	return
+}
+
 func (e1 Shape) Equal(e2 Shape) bool {
 	return slices.CompareFunc(e1, e2, LineCompare) == 0
 }
@@ -186,5 +212,13 @@ func (e1 Shape) Equal(e2 Shape) bool {
 func (m Moves) Contains(a Shape) bool {
 	return slices.ContainsFunc(m, func(b Shape) bool {
 		return a.Equal(b)
+	})
+}
+
+func (m Moves) Sort() {
+	final := Final()
+
+	slices.SortFunc(m, func(a, b Shape) int {
+		return a.Distance(final) - b.Distance(final)
 	})
 }
