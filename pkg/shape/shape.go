@@ -182,3 +182,9 @@ func LineCompare(e1, e2 Line) int {
 func (e1 Shape) Equal(e2 Shape) bool {
 	return slices.CompareFunc(e1, e2, LineCompare) == 0
 }
+
+func (m Moves) Contains(a Shape) bool {
+	return slices.ContainsFunc(m, func(b Shape) bool {
+		return a.Equal(b)
+	})
+}

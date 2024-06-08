@@ -57,7 +57,5 @@ func main() {
 		}
 	}
 
-	fmt.Println(puzzle)
-
 	fmt.Println(solver.Solve(puzzle))
 }
