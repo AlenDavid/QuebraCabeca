@@ -20,7 +20,7 @@ func BestSearch(input shape.Shape) shape.Moves {
 			return append(make(shape.Moves, 0), input, x)
 		}
 
-		for _, child := range x.Next() {
+		for _, child := range x.Children() {
 			if !open.Contains(child) && !close.Contains(child) {
 				open = append(open, child)
 			}

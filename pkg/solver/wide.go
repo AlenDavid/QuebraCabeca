@@ -22,7 +22,7 @@ func WideSearch(input shape.Shape) shape.Moves {
 
 		close = append(close, x)
 
-		for _, move := range x.Next() {
+		for _, move := range x.Children() {
 			if !open.Contains(move) && !close.Contains(move) {
 				open = append(open, move)
 			}

@@ -166,7 +166,7 @@ func (a Shape) Right() (bool, Shape) {
 	return true, b
 }
 
-func (a Shape) Next() Moves {
+func (a Shape) Children() Moves {
 	next := make(Moves, 0)
 
 	if moving, shape := a.Up(); moving {

@@ -197,7 +197,7 @@ func TestNext(t *testing.T) {
 			{6, 7, 8}},
 		}
 
-		assert.Equal(t, expected, input.Next())
+		assert.Equal(t, expected, input.Children())
 	})
 }
 
