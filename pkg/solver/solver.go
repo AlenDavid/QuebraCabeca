@@ -7,4 +7,5 @@ import (
 
 func Solve(input shape.Shape) moves.Moves {
 	return BestSearch(input)
+	// return WideSearch(input)
 }
